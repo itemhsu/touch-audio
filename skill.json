@@ -1,0 +1,119 @@
+{
+  "manifest": {
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:724836382908:function:0006ba2a-df73-4d16-a4e9-0d1c79b759f0:Release_0"
+        },
+        "interfaces": [
+          {
+            "minimumTemplateVersion": "1.0",
+            "type": "RENDER_TEMPLATE"
+          },
+          {
+            "supportedViewports": [
+              {
+                "maxHeight": 540,
+                "maxWidth": 960,
+                "minHeight": 540,
+                "minWidth": 960,
+                "mode": "TV",
+                "shape": "RECTANGLE"
+              },
+              {
+                "maxHeight": 480,
+                "maxWidth": 480,
+                "minHeight": 480,
+                "minWidth": 480,
+                "mode": "HUB",
+                "shape": "ROUND"
+              },
+              {
+                "maxHeight": 600,
+                "maxWidth": 1024,
+                "minHeight": 600,
+                "minWidth": 1024,
+                "mode": "HUB",
+                "shape": "RECTANGLE"
+              },
+              {
+                "maxHeight": 800,
+                "maxWidth": 1280,
+                "minHeight": 800,
+                "minWidth": 1280,
+                "mode": "HUB",
+                "shape": "RECTANGLE"
+              },
+              {
+                "maxHeight": 480,
+                "maxWidth": 960,
+                "minHeight": 480,
+                "minWidth": 960,
+                "mode": "HUB",
+                "shape": "RECTANGLE"
+              }
+            ],
+            "type": "ALEXA_PRESENTATION_APL"
+          },
+          {
+            "type": "AUDIO_PLAYER"
+          }
+        ],
+        "regions": {
+          "NA": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-east-1:724836382908:function:0006ba2a-df73-4d16-a4e9-0d1c79b759f0:Release_0"
+            }
+          },
+          "EU": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:eu-west-1:724836382908:function:0006ba2a-df73-4d16-a4e9-0d1c79b759f0:Release_0"
+            }
+          },
+          "FE": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-west-2:724836382908:function:0006ba2a-df73-4d16-a4e9-0d1c79b759f0:Release_0"
+            }
+          }
+        }
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "containsAds": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "locales": {
+        "en-US": {}
+      },
+      "usesPersonalInfo": false
+    },
+    "publishingInformation": {
+      "automaticDistribution": {
+        "isActive": false
+      },
+      "category": "KNOWLEDGE_AND_TRIVIA",
+      "distributionCountries": [],
+      "isAvailableWorldwide": true,
+      "locales": {
+        "en-US": {
+          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\"",
+          "examplePhrases": [
+            "Alexa open space facts",
+            "Alexa ask space facts for a fact",
+            "Alexa tell space facts to tell me trivia"
+          ],
+          "keywords": [
+            "space",
+            "facts",
+            "trivia"
+          ],
+          "name": "SZIIT-Python",
+          "summary": "Learn fun facts about space."
+        }
+      },
+      "testingInstructions": ""
+    }
+  }
+}
