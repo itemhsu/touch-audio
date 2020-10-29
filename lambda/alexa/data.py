@@ -33,6 +33,7 @@ en = {
         'https://raw.githubusercontent.com/itemhsu/audio/main/along.m4a',
         'https://raw.githubusercontent.com/itemhsu/audio/main/cheap_thrills.m4a',
         'https://raw.githubusercontent.com/itemhsu/audio/main/dont_let_me_down.m4a',
+        'https://raw.githubusercontent.com/itemhsu/audio/main/shape_of_u.m4a',
         'https://raw.githubusercontent.com/itemhsu/audio/main/u_can_by_me_love.m4a'
     ],
         

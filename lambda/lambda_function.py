@@ -11,14 +11,62 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model import Response
 
 from alexa import data, util
+from github import Github
+
 import random
 
+m4aHome="https://raw.githubusercontent.com/itemhsu/audio/main/"
 
 sb = StandardSkillBuilder(
     table_name=data.jingle["db_table"])
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
+'''
+logger.info("Github() 24")
+g = Github()
+logger.info("Github() 26")
+repo = g.get_repo("itemhsu/audio")
+logger.info("Github() repo 28")
+contents = repo.get_contents("")
+logger.info(contents)
+logger.info("Github() contents 32")
+m4aList=[]
+m4aCount=0
+for content_file in contents:
+    if 'm4a' in content_file.name:
+        logger.info(content_file.name)
+        m4aCount=m4aCount+1
+        m4aList.append(content_file.name)
+
+logger.info(m4aList)
+logger.info(m4aCount)
+logger.info("Github() contents 39")
+'''
+
+def getM4a():
+    g = Github()
+    repo = g.get_repo("itemhsu/audio")
+    contents = repo.get_contents("")
+    m4aList=[]
+    m4aCount=0
+    for content_file in contents:
+        if 'm4a' in content_file.name:
+            logger.info(content_file.name)
+            m4aCount=m4aCount+1
+            m4aList.append(content_file.name)
+            
+    logger.info(m4aList)
+    track=random.randrange (0,m4aCount)
+    #m4aTrac=m4aHome+m4aList[track]
+    m4aTrac=m4aList[track]
+    logger.info(m4aTrac)
+    return m4aTrac
+
+#logger.info(getM4a())
+#logger.info("Github() contents 53")
+#logger.info(getM4a())
+#logger.info("Github() contents 55")
 # ######################### INTENT HANDLERS #########################
 # This section contains handlers for the built-in intents and generic
 # request handlers like launch, session end, skill events etc.
@@ -80,16 +128,21 @@ class LaunchRequestOrPlayAudioHandler(AbstractRequestHandler):
         request = handler_input.request_envelope.request
         
         logger.info("In LaunchRequestOrPlayAudioHandler:80")
-        logger.info(len(util.audio_data(request)["url"]))
-        trackCount=len(util.audio_data(request)["url"])
-        track=random.randrange (0,trackCount)
-        logger.info(track)
+        #logger.info(len(util.audio_data(request)["url"]))
+        #trackCount=len(util.audio_data(request)["url"])
+        #track=random.randrange (0,trackCount)
+        #logger.info(track)
         #len(item_dict['result'][0]['run'])
-        return util.play(url=util.audio_data(request)["url"][track],
+        songName=getM4a()
+        #util.audio_data(request)["card"]["text"]=songName
+        my_card_data=util.audio_data(request)["card"]
+        my_card_data["text"]=songName
+
+        return util.play(url=m4aHome+songName,
                          offset=0,
                          text=_(data.WELCOME_MSG).format(
                              util.audio_data(request)["card"]["title"]),
-                         card_data=util.audio_data(request)["card"],
+                         card_data=my_card_data,
                          response_builder=handler_input.response_builder)
 
 
@@ -273,9 +326,13 @@ class PlaybackNearlyFinishedHandler(AbstractRequestHandler):
         trackCount=len(util.audio_data(request)["url"])
         track=random.randrange (0,trackCount)
         logger.info(track)
+        songName=getM4a()
+        my_card_data=util.audio_data(request)["card"]
+        my_card_data["text"]=songName
+        #return util.play(url=m4aHome+songName,
         return util.play_later(
-            url=util.audio_data(request)["url"][track],
-            card_data=util.audio_data(request)["card"],
+            url=m4aHome+songName,
+            card_data=my_card_data,
             response_builder=handler_input.response_builder)
 
 
