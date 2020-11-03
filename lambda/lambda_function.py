@@ -347,11 +347,16 @@ class PlaybackFailedHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        logger.info("In PlaybackFailedHandler")
+        logger.info("In PlaybackFailedHandler:350 ")
         request = handler_input.request_envelope.request
         logger.info("Playback failed: {}".format(request.error))
+        songName=getM4a()
+        my_card_data=util.audio_data(request)["card"]
+        my_card_data["text"]=songName
+        #return util.play(url=m4aHome+songName,
+
         return util.play(
-            url=util.audio_data(request)["url"], offset=0, text=None,
+            url=m4aHome+songName, offset=0, text=None,
             card_data=None,
             response_builder=handler_input.response_builder)
 
