@@ -15,7 +15,7 @@ from github import Github
 
 import random
 
-m4aHome="https://raw.githubusercontent.com/itemhsu/audio/main/"
+m4aHome="https://wdr-wdr2-rheinland.icecastssl.wdr.de/wdr/wdr2/rheinland/mp3/128/stream.mp3"
 
 sb = StandardSkillBuilder(
     table_name=data.jingle["db_table"])
@@ -133,12 +133,12 @@ class LaunchRequestOrPlayAudioHandler(AbstractRequestHandler):
         #track=random.randrange (0,trackCount)
         #logger.info(track)
         #len(item_dict['result'][0]['run'])
-        songName=getM4a()
+        songName="" #getM4a()
         #util.audio_data(request)["card"]["text"]=songName
         my_card_data=util.audio_data(request)["card"]
         my_card_data["text"]=songName
 
-        return util.play(url=m4aHome+songName,
+        return util.play(url=m4aHome,
                          offset=0,
                          text=_(data.WELCOME_MSG).format(
                              util.audio_data(request)["card"]["title"]),
@@ -326,12 +326,12 @@ class PlaybackNearlyFinishedHandler(AbstractRequestHandler):
         trackCount=len(util.audio_data(request)["url"])
         track=random.randrange (0,trackCount)
         logger.info(track)
-        songName=getM4a()
+        songName="" #getM4a()
         my_card_data=util.audio_data(request)["card"]
         my_card_data["text"]=songName
         #return util.play(url=m4aHome+songName,
         return util.play_later(
-            url=m4aHome+songName,
+            url=m4aHome,
             card_data=my_card_data,
             response_builder=handler_input.response_builder)
 
@@ -350,13 +350,13 @@ class PlaybackFailedHandler(AbstractRequestHandler):
         logger.info("In PlaybackFailedHandler:350 ")
         request = handler_input.request_envelope.request
         logger.info("Playback failed: {}".format(request.error))
-        songName=getM4a()
+        songName="" #getM4a()
         my_card_data=util.audio_data(request)["card"]
         my_card_data["text"]=songName
         #return util.play(url=m4aHome+songName,
 
         return util.play(
-            url=m4aHome+songName, offset=0, text=None,
+            url=m4aHome, offset=0, text=None,
             card_data=None,
             response_builder=handler_input.response_builder)
 
